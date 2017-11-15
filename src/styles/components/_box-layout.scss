@@ -25,8 +25,6 @@
 }
 
 .box-layout__button{
-    display: inline-block;
-    align-items: center;
-    // margin:0 $s-size;
-    padding: $s-size;
+    margin: $xs-size 0;
+    width: 20vw;
 }

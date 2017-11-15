@@ -6,13 +6,8 @@ export const LoginPage = ({ startLoginWithGoogle, startLoginWithFacebook }) => (
     <div className="box-layout">
         <div className="box-layout__box">
             <h1 className="box-layout__title">KMUTNB AUTH</h1>
-            {/* <p>It's time to get your expenses under control.</p> */}
-            <div className="box-layout__button">
-                <button className="button login-google" onClick={startLoginWithGoogle}>Login with Google</button>
-            </div>
-            <div className="box-layout__button">
-                <button className="button login-facebook" onClick={startLoginWithFacebook}>Login with Facebook</button>
-            </div>
+            <button className="button button--secondary login-google box-layout__button" onClick={startLoginWithGoogle}>Login with Google</button>
+            <button className="button login-facebook box-layout__button" onClick={startLoginWithFacebook}>Login with Facebook</button>
         </div>
     </div>
 );
