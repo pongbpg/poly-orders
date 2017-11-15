@@ -11,17 +11,11 @@ export default (state = {}, action) => {
         case 'setAuth':
             return {
                 ...state,
-                providerData:action.providerData,
-                hasIDCard: action.hasIDCard
-            };
-        case 'UPDATE_IDCARD':
-            return {
-                ...state,
                 providerData: {
                     ...state.providerData,
-                    ...action.idcard
+                    ...action.providerData
                 },
-                hasIDCard: true
+                hasIDCard: action.hasIDCard || state.hasIDCard
             };
         default:
             return state;

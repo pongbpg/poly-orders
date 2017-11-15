@@ -34,16 +34,16 @@ firebase.auth().onAuthStateChanged((user) => {
     // console.log(user);
     store.dispatch(login(user.uid, user.providerData[0]));
     store.dispatch(checkRegister(user)).then(() => {
-      renderApp();
       if (!store.getState().auth.hasIDCard) {
+        renderApp();
         history.push('/idcard');
       } else {
-        history.push('/dashboard');
+        renderApp();
+        if (history.location.pathname === '/') {
+          history.push('/dashboard');
+        }
       }
-      // if (history.location.pathname === '/') {
-      // }
     });
-
   } else {
     store.dispatch(logout());
     renderApp();

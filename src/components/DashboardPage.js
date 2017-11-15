@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 
 
 export const DashboardPage = (props) => (
-  <div className="content-container">
-    <div className="page-header">
-      <img src={props.providerData.photoURL} />
+
+  <div className="page-header">
+    <div className="content-container">
+      <img className="image" src={props.providerData.photoURL} />
       <h1 className="page-header__title">คุณ {props.providerData.displayName}</h1>
       <h1 className="page-header__title">รหัสประชาชน {props.providerData.idcard}</h1>
     </div>

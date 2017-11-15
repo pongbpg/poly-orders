@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addUser, updateIdCardDB } from '../actions/users';
+import { addUser } from '../actions/users';
 
 export class IDCardPage extends React.Component {
     state = {
@@ -9,8 +9,8 @@ export class IDCardPage extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.addUser(this.props.uid, this.state.idcard, this.props.providerData);
-        this.props.updateIdCardDB(this.props.uid, this.state.idcard);
-        this.props.history.push('/dashboard');
+        // this.props.updateIdCard(this.props.uid, this.state.idcard);
+        this.props.history.push('/');
     };
     onIdCardChange = (e) => {
         const idcard = e.target.value;
@@ -21,7 +21,7 @@ export class IDCardPage extends React.Component {
             <div>
                 <div className="page-header">
                     <div className="content-container">
-                        <h1 className="page-header__title">ลงทะเบียน</h1>
+                        <h1 className="page-header__title">ลงทะเบียน : {this.props.providerData.displayName}</h1>
                     </div>
                 </div>
                 <div className="content-container">
@@ -34,7 +34,7 @@ export class IDCardPage extends React.Component {
                             value={this.state.idcard}
                             onChange={this.onIdCardChange}
                         />
-                        <button className="button">Save</button>
+                        <button className="button">บันทึก</button>
                     </form>
                 </div>
             </div>
@@ -47,7 +47,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
     addUser: (registerId, idcard, providerData) => dispatch(addUser(registerId, idcard, providerData)),
-    updateIdCardDB: (uid, idcard) => dispatch(updateIdCardDB(uid, idcard))
+    // updateIdCard: (uid, idcard) => dispatch(updateIdCard(uid, idcard))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(IDCardPage);
