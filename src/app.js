@@ -34,6 +34,7 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
+    // console.log(user);
     store.dispatch(login(user.uid, user.providerData[0]));
     store.dispatch(checkLogin(user)).then(() => {
       if (!store.getState().auth.hasIDCard) {
@@ -42,13 +43,10 @@ firebase.auth().onAuthStateChanged((user) => {
       } else {
         renderApp();
         store.dispatch(getUser(store.getState().auth.providerData.idcard))
-        // .then(() => {
         store.dispatch(startListApps(store.getState().user.apps));
         if (history.location.pathname === '/') {
           history.push('/dashboard');
         }
-        // });
-
       }
     });
   } else {

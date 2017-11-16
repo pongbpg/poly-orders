@@ -56,3 +56,10 @@
         padding-left: $s-size;
     }
 }
+.list-item--current{
+    background-color: $light-blue;
+    &:hover{
+        background:$light-blue;
+        cursor: pointer;
+    }
+}

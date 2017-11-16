@@ -10,13 +10,13 @@ export const addUser = (loginId, idcard, providerData) => {
         ...providerData
     };
     return (dispatch) => {
-        return database.ref(`users/${idcard}/providers`)
-            .push(data)
+        return database.ref(`users/${idcard}/logins/${loginId}`)
+            .set(data)
             .then(() => {
                 return database.ref(`logins/${loginId}/idcard`)
                     .set(idcard)
                     .then(() => {
-                        dispatch(setAuth({ idcard }, { hasIDCard: true }));
+                        dispatch(setAuth(loginId, { idcard }, { hasIDCard: true }));
                         dispatch(getUser(idcard));
                     });
             });
@@ -26,7 +26,7 @@ export const addUser = (loginId, idcard, providerData) => {
 export const getUser = (idcard) => {
     return (dispatch) => {
         return database.ref(`users/${idcard}`).on('value', (snapshot) => {
-            const user = { apps: [], providers: [] };
+            const user = { apps: [], logins: [] };
             snapshot.forEach((childSnapshot) => {
                 const key = childSnapshot.key;
                 childSnapshot.forEach((data) => {

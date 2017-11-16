@@ -21,7 +21,7 @@ export class IDCardPage extends React.Component {
             <div>
                 <div className="page-header">
                     <div className="content-container">
-                        <h1 className="page-header__title">ลงทะเบียน : {this.props.providerData.displayName}</h1>
+                        <h1 className="page-header__title">ลงทะเบียน : {this.props.providerData.displayName}@{this.props.providerData.providerId}</h1>
                     </div>
                 </div>
                 <div className="content-container">

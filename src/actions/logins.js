@@ -4,7 +4,10 @@ export const checkLogin = (user) => {
     return (dispatch) => {
         return database.ref(`logins/${user.uid}`).once('value').then((snapshot) => {
             if (snapshot.hasChild('idcard')) {
-                dispatch(setAuth(snapshot.val(), { hasIDCard: true }))
+                dispatch(setAuth(user.uid,{
+                    ...snapshot.val(),
+                    ...user.providerData[0]
+                }, { hasIDCard: true }))
             } else {
                 dispatch(registerUID(user));
             }
@@ -17,13 +20,14 @@ export const registerUID = (user) => {
         return database.ref(`logins/${user.uid}`)
             .update(user.providerData[0])
             .then((ref) => {
-                dispatch(setAuth(user.providerData[0], { hasIDCard: false }))
+                dispatch(setAuth(user.uid,user.providerData[0], { hasIDCard: false }))
             });
     };
 };
 
-export const setAuth = (providerData, { hasIDCard }) => ({
+export const setAuth = (uid,providerData, { hasIDCard }) => ({
     type: 'SET_AUTH',
+    uid,
     providerData,
     hasIDCard
 });

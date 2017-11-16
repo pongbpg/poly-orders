@@ -4,7 +4,7 @@ import ListItem from './ListItem';
 import { addUserApp, removeUserApp } from '../../actions/users';
 import selectApps from '../../selectors/apps';
 
-export class ListPage extends React.Component {
+export class ListApps extends React.Component {
     onAddUserApp = (app) => {
         this.props.addUserApp(this.props.idcard, app);
     };
@@ -47,4 +47,4 @@ const mapDispatchToProps = (dispatch, props) => ({
     addUserApp: (idcard, app) => dispatch(addUserApp(idcard, app)),
     removeUserApp: (idcard, appId) => dispatch(removeUserApp(idcard, appId))
 });
-export default connect(mapStateToProps, mapDispatchToProps)(ListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ListApps);

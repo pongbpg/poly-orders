@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AddPage from './apps/AddPage';
 import ListApps from './apps/List';
+import ListLogins from './logins/List';
 
 export const DashboardPage = (props) => (
   <div>
@@ -16,12 +17,9 @@ export const DashboardPage = (props) => (
     </div>
     <div className="content-container">
       <ListApps />
+      <ListLogins />
     </div>
-    {/* <AddPage /> */}
   </div>
-  // <div className="page-header">
-  //<img className="image" src={props.providerData.photoURL} />
-  // </div>
 );
 
 // const mapStateToProps = (state) => ({
