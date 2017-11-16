@@ -8,14 +8,15 @@ export default (state = {}, action) => {
             };
         case 'LOGOUT':
             return {};
-        case 'setAuth':
+        case 'SET_AUTH':
             return {
                 ...state,
                 providerData: {
                     ...state.providerData,
                     ...action.providerData
                 },
-                hasIDCard: action.hasIDCard || state.hasIDCard
+                hasIDCard: action.hasIDCard || state.hasIDCard,
+                idcard: action.providerData.idcard
             };
         default:
             return state;

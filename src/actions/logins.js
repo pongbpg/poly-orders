@@ -1,12 +1,9 @@
 import database from '../firebase/firebase';
 
-export const checkRegister = (user) => {
+export const checkLogin = (user) => {
     return (dispatch) => {
-        return database.ref(`registers/${user.uid}`).once('value').then((snapshot) => {
-            // console.log(snapshot.val().hasOwnProperty('idcard'));
-            // const providerData = snapshot.val();
+        return database.ref(`logins/${user.uid}`).once('value').then((snapshot) => {
             if (snapshot.hasChild('idcard')) {
-                // console.log(snapshot.val());
                 dispatch(setAuth(snapshot.val(), { hasIDCard: true }))
             } else {
                 dispatch(registerUID(user));
@@ -17,7 +14,7 @@ export const checkRegister = (user) => {
 
 export const registerUID = (user) => {
     return (dispatch) => {
-        return database.ref(`registers/${user.uid}`)
+        return database.ref(`logins/${user.uid}`)
             .update(user.providerData[0])
             .then((ref) => {
                 dispatch(setAuth(user.providerData[0], { hasIDCard: false }))
@@ -26,7 +23,7 @@ export const registerUID = (user) => {
 };
 
 export const setAuth = (providerData, { hasIDCard }) => ({
-    type: 'setAuth',
+    type: 'SET_AUTH',
     providerData,
     hasIDCard
 });

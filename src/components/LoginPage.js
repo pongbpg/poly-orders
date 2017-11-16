@@ -7,7 +7,7 @@ import { startLoginWithGoogle, startLoginWithFacebook } from '../actions/auth';
 export const LoginPage = ({ startLoginWithGoogle, startLoginWithFacebook }) => (
     <div className="box-layout">
         <div className="box-layout__box">
-            <h1 className="box-layout__title">Authenticate With</h1>
+            <h1 className="box-layout__title">KMUTNB AUTH</h1>
             <button className="button button--secondary login-google box-layout__button" onClick={startLoginWithGoogle}><FaGoogle />oogle</button>
             <button className="button login-facebook box-layout__button" onClick={startLoginWithFacebook}><FaFacebook />acebook</button>
         </div>

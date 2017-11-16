@@ -4,7 +4,7 @@
 .header__title{
     color:white;
     text-decoration: none;
-    h1{
+    h2{
         margin:0;
     }
 }
@@ -14,7 +14,8 @@
     align-items: center;
     padding: $s-size 0;
 }
-.header__display{
-    color: $off-white;
-    font-size: $font-size-large;
+.header__user-info{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
