@@ -8,7 +8,7 @@ import IDCardPage from '../components/IDCardPage';
 import AddAppPage from '../components/apps/AddPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import { AppPage } from '../components/AppPage';
+import AppPage from '../components/AppPage';
 export const history = createHistory();
 
 const AppRouter = () => (
