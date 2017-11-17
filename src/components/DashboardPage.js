@@ -4,25 +4,34 @@ import { Link } from 'react-router-dom';
 import AddPage from './apps/AddPage';
 import ListApps from './apps/List';
 import ListLogins from './logins/List';
+import { setPath } from '../actions/path';
+import selectPath from '../selectors/path';
 
-export const DashboardPage = (props) => (
-  <div>
+export class DashboardPage extends React.Component {
+  componentDidMount() {
+    this.props.setPath(this.props.history.location.pathname);
+  }
 
-    <div className="page-header">
-      <div className="content-container">
-        <div className="page-header__actions">
-          <Link className="button" to="/create">เพิ่มแอพ</Link>
+  render() {
+    return (
+      <div>
+
+        <div className="page-header">
+          <div className="content-container">
+            <div className="page-header__actions">
+              <Link className="button" to="/create">เพิ่มแอพ</Link>
+            </div>
+          </div>
+        </div>
+        <div className="content-container">
+          <ListApps />
+          <ListLogins />
         </div>
       </div>
-    </div>
-    <div className="content-container">
-      <ListApps />
-      <ListLogins />
-    </div>
-  </div>
-);
-
-// const mapStateToProps = (state) => ({
-//   providerData: state.auth.providerData
-// });
-export default connect(undefined)(DashboardPage);
+    );
+  }
+}
+const mapDispatchToProps = (dispatch) => ({
+  setPath: (path) => dispatch(setPath(path))
+})
+export default connect(undefined, mapDispatchToProps)(DashboardPage);

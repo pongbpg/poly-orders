@@ -45,10 +45,11 @@ firebase.auth().onAuthStateChanged((user) => {
         renderApp();
         store.dispatch(getUser(store.getState().auth.providerData.idcard))
         store.dispatch(startListApps(store.getState().user.apps));
-        if (history.location.pathname === '/' && !store.getState().path) {
+        // console.log(store.getState().path);
+        if (history.location.pathname === '/' && store.getState().path === '/') {
           history.push('/dashboard');
         } else {
-          store.dispatch(setPath(history.location.pathname));
+          // store.dispatch(setPath(history.location.pathname));
           history.push(store.getState().path);
         }
       }

@@ -28,12 +28,13 @@ export default class ListItem extends React.Component {
             this.setState({ hasSelected: nextProps.app.hasSelected });
         }
     };
-
     render() {
         return (
             <div className="list-item">
                 <div>
-                    <h3 className="list-item__title">{this.state.appName.toUpperCase()}</h3>
+                    <Link to={this.state.callbackUrl}>
+                        <h3 className="list-item__title">{this.state.appName.toUpperCase()}</h3>
+                    </Link>
                     <span className="list-item__sub-title">{this.state.domainName}</span>
                 </div>
                 {

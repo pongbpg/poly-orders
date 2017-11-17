@@ -27,7 +27,12 @@ export class ListApps extends React.Component {
                             </div>
                         ) : (
                                 this.props.apps.map((app) => {
-                                    return <ListItem key={app.id} app={app} onAddUserApp={this.onAddUserApp} onRemoveUserApp={this.onRemoveUserApp} />;
+                                    return <ListItem
+                                        key={app.id}
+                                        app={app}
+                                        onAddUserApp={this.onAddUserApp}
+                                        onRemoveUserApp={this.onRemoveUserApp}
+                                    />;
                                 })
                             )
                     }
