@@ -8,14 +8,16 @@ import { setPath } from '../actions/path';
 import selectPath from '../selectors/path';
 
 export class DashboardPage extends React.Component {
-  componentDidMount() {
-    this.props.setPath(this.props.history.location.pathname);
+  componentDidUpdate() {
+    const path = this.props.path;
+    if (path !== '/' && path !== '/dashboard') {
+      this.props.history.push(path);
+    }
   }
 
   render() {
     return (
       <div>
-
         <div className="page-header">
           <div className="content-container">
             <div className="page-header__actions">
@@ -31,7 +33,12 @@ export class DashboardPage extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  path: state.path
+});
+
 const mapDispatchToProps = (dispatch) => ({
   setPath: (path) => dispatch(setPath(path))
-})
-export default connect(undefined, mapDispatchToProps)(DashboardPage);
+});
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);
