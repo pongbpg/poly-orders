@@ -15,7 +15,7 @@ export class ListApps extends React.Component {
         return (
             <div className="content-container">
                 <div className="list-header">
-                    <div className="show-for-mobile">Apps</div>
+                    <div className="show-for-mobile">แอพพลิเคชั่น</div>
                     <div className="show-for-desktop">แอพพลิเคชั่น</div>
                     <div className="show-for-desktop">สถานะ</div>
                 </div>
@@ -37,12 +37,10 @@ export class ListApps extends React.Component {
     }
 };
 
-const mapStateToProps = (state) => {
-    return {
-        apps: state.apps,
-        idcard: state.auth.idcard
-    };
-};
+const mapStateToProps = (state) => ({
+    apps: state.apps,
+    idcard: state.auth.idcard
+});
 const mapDispatchToProps = (dispatch, props) => ({
     addUserApp: (idcard, app) => dispatch(addUserApp(idcard, app)),
     removeUserApp: (idcard, appId) => dispatch(removeUserApp(idcard, appId))

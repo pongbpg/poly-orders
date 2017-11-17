@@ -13,6 +13,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
 import { storage } from 'firebase';
+import { setPath } from './actions/path';
 
 const store = configureStore();
 
@@ -44,14 +45,17 @@ firebase.auth().onAuthStateChanged((user) => {
         renderApp();
         store.dispatch(getUser(store.getState().auth.providerData.idcard))
         store.dispatch(startListApps(store.getState().user.apps));
-        if (history.location.pathname === '/') {
+        if (history.location.pathname === '/' && !store.getState().path) {
           history.push('/dashboard');
+        } else {
+          history.push(store.getState().path);
         }
       }
     });
   } else {
     store.dispatch(logout());
     store.dispatch(resetUser());
+    store.dispatch(setPath(history.location.pathname));
     renderApp();
     history.push('/');
   }

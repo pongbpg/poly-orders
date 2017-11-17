@@ -11,7 +11,7 @@ export const DashboardPage = (props) => (
     <div className="page-header">
       <div className="content-container">
         <div className="page-header__actions">
-          <Link className="button" to="/app/create">เพิ่มแอพ</Link>
+          <Link className="button" to="/create">เพิ่มแอพ</Link>
         </div>
       </div>
     </div>

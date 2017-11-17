@@ -16,7 +16,7 @@ export default class ListItem extends React.Component {
         return (
             <div className="list-item">
                 <div>
-                    <h3 className="list-item__title">{this.state.providerId} {this.state.isCurrent?"(Active)":""}</h3>
+                    <h3 className="list-item__title">{this.state.providerId} {this.state.isCurrent?"(loging)":""}</h3>
                     <span className="list-item__sub-title">uid:{this.state.uid}</span>
                 </div>
                 <div className="text-right">
