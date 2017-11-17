@@ -13,7 +13,7 @@ export default class AppForm extends React.Component {
     onAppNameChange = (e) => {
         const appName = e.target.value;
         const domainName = appName === '' ? '' : `http://${window.location.host}/app/${appName.toLowerCase()}`;
-        const callbackUrl = appName === '' ? '' : `${domainName}/callback`;
+        const callbackUrl = appName === '' ? '' : `/app/${appName.toLowerCase()}`;
         this.setState(() => ({
             appName,
             domainName,
