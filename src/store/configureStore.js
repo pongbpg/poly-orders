@@ -4,6 +4,7 @@ import authReducer from '../reducers/auth';
 import appsReducer from '../reducers/apps';
 import userReducer from '../reducers/user';
 import pathReducer from '../reducers/path';
+import usersReducer from '../reducers/users';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -13,7 +14,8 @@ export default () => {
       auth: authReducer,
       apps: appsReducer,
       user: userReducer,
-      path: pathReducer
+      path: pathReducer,
+      users: usersReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

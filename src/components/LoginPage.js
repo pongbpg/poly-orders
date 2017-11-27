@@ -4,12 +4,12 @@ import FaGoogle from 'react-icons/lib/fa/google';
 import FaFacebook from 'react-icons/lib/fa/facebook';
 import { startLoginWithGoogle, startLoginWithFacebook } from '../actions/auth';
 
-export const LoginPage = ({ startLoginWithGoogle, startLoginWithFacebook }) => (
+export const LoginPage = (props) => (
     <div className="box-layout">
         <div className="box-layout__box">
             <h1 className="box-layout__title">KMUTNB AUTH</h1>
-            <button className="button button--secondary login-google box-layout__button" onClick={startLoginWithGoogle}><FaGoogle />oogle</button>
-            <button className="button login-facebook box-layout__button" onClick={startLoginWithFacebook}><FaFacebook />acebook</button>
+            <button className="button button--secondary login-google box-layout__button" onClick={props.startLoginWithGoogle}><FaGoogle />oogle</button>
+            <button className="button login-facebook box-layout__button" onClick={props.startLoginWithFacebook}><FaFacebook />acebook</button>
         </div>
     </div>
 );

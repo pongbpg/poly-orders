@@ -8,6 +8,7 @@ import { setPath } from '../actions/path';
 import selectPath from '../selectors/path';
 
 export class DashboardPage extends React.Component {
+
   componentDidUpdate() {
     const path = this.props.path;
     if (path !== '/' && path !== '/dashboard') {
@@ -16,16 +17,28 @@ export class DashboardPage extends React.Component {
   }
 
   render() {
+    const marginTop = {
+      marginTop: '20px'
+    };
+
+    const marginLeft = {
+      marginLeft: '10px'
+    };
     return (
       <div>
-        <div className="page-header">
-          <div className="content-container">
-            <div className="page-header__actions">
-              <Link className="button" to="/create">เพิ่มแอพ</Link>
+        {
+          this.props.role === 'admin' && (
+            <div className="page-header">
+              <div className="content-container">
+                <div className="page-header__actions">
+                  <Link className="button" to="/create">จัดการแอพ</Link>
+                  <Link className="button" to="/users" style={marginLeft}>จัดการผู้ใช้งาน</Link>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="content-container">
+          )
+        }
+        < div className="content-container" style={marginTop} >
           <ListApps />
           <ListLogins />
         </div>
@@ -35,7 +48,8 @@ export class DashboardPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  path: state.path
+  path: state.path,
+  role: state.user.role
 });
 
 const mapDispatchToProps = (dispatch) => ({
