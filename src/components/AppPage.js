@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import selectPath from '../selectors/path';
-import { setPath } from '../actions/path';
+import selectPath from '../selectors/sys';
+import { setPath } from '../actions/sys';
 
 export class AppPage extends React.Component {
     constructor(props) {
@@ -48,7 +48,7 @@ const mapStateToProps = (state) => {
     // console.log('state userApps', state.user.apps);
     return {
         userApps: state.user.apps,
-        path: state.path
+        path: state.sys.path
     }
 };
 
