@@ -11,9 +11,10 @@ export const startAddApp = (appData = {}) => {
         const {
             appName = '',
             domainName = '',
-            callbackUrl = ''
+            callbackUrl = '',
+            securityKey = 'auth@kmutnb'
             } = appData;
-        const app = { appName, domainName, callbackUrl };
+        const app = { appName, domainName, callbackUrl, securityKey };
         return database.ref(`apps`).push(app)
     };
 };

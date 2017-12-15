@@ -18,6 +18,7 @@ import { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
 import { storage } from 'firebase';
 import { setPath } from './actions/sys';
+import jwt from 'jsonwebtoken';
 
 const store = configureStore();
 
@@ -51,11 +52,18 @@ firebase.auth().onAuthStateChanged((user) => {
         store.dispatch(getUser(store.getState().auth.providerData.idcard))
         store.dispatch(startListApps(store.getState().user.apps));
         store.dispatch(listUsers());
-        // console.log(store.getState().path);
         if (history.location.pathname === '/' && store.getState().sys.path === '/') {
           history.push('/dashboard');
         } else {
-          // store.dispatch(setPath(history.location.pathname));
+          const path = store.getState().sys.path;
+          if (typeof path === 'string') {
+            if (path.indexOf('callback') > -1) {
+              const callbackUrl = path.split('/')[2];
+              const appId = path.split('/')[3];
+              const token = jwt.sign({ appId, callbackUrl, idcard: store.getState().auth.idcard }, 'auth@kmutnb');
+              window.location = `https://${callbackUrl}?token=${token}`
+            }
+          }
           history.push(store.getState().sys.path);
         }
       }

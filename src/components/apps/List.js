@@ -13,7 +13,8 @@ export class ListApps extends React.Component {
             rowsNo: 0,
             sizeTile: 3,
             appsCount: 0,
-            datas: []
+            datas: [],
+            idcard: props.idcard
         };
     }
     onAddUserApp = (app) => {
@@ -43,34 +44,7 @@ export class ListApps extends React.Component {
         }))
     }
     render() {
-        // console.log(this.state.rowsNo);
-        // console.log(this.state.datas)
         return (
-            // <div className="content-container">
-            //     <div className="list-header">
-            //         <div className="show-for-mobile">แอพพลิเคชั่น</div>
-            //         <div className="show-for-desktop">แอพพลิเคชั่น</div>
-            //         <div className="show-for-desktop">สถานะ</div>
-            //     </div>
-            //     <div className="list-body">
-            //         {
-            //             this.props.apps.length === 0 ? (
-            //                 <div className="list-item list-item--message">
-            //                     <span>ไม่มีแอพพลิเคชั่น</span>
-            //                 </div>
-            //             ) : (
-            //                     this.props.apps.map((app) => {
-            //                         return <ListItem
-            //                             key={app.id}
-            //                             app={app}
-            //                             onAddUserApp={this.onAddUserApp}
-            //                             onRemoveUserApp={this.onRemoveUserApp}
-            //                         />;
-            //                     })
-            //                 )
-            //         }
-            //     </div>
-            // </div>
             <div>
                 {
                     this.state.apps.length === 0 ? (
@@ -86,18 +60,18 @@ export class ListApps extends React.Component {
                             <div className="container">
                                 {
                                     this.state.datas.map((apps, key) => {
-                                        // let sizeAll =12;
                                         return (
                                             <div key={key} className="tile is-ancestor">
                                                 {
                                                     apps[0].map((app) => {
                                                         const size = 12 / apps[0].length;
-                                                        // sizeAll -= size;
+                                                        // console.log(this.state.idcard);
                                                         return (
                                                             <ListItem
                                                                 key={app.id}
                                                                 app={app}
                                                                 size={size}
+                                                                idcard={this.state.idcard}
                                                                 onAddUserApp={this.onAddUserApp}
                                                                 onRemoveUserApp={this.onRemoveUserApp}
                                                             />

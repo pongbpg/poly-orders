@@ -1,4 +1,4 @@
-import { firebase, googleAuthProvider, facebookAuthProvider } from '../firebase/firebase';
+import database, { firebase, googleAuthProvider, facebookAuthProvider } from '../firebase/firebase';
 
 export const startLoginWithGoogle = () => {
     return () => {

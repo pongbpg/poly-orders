@@ -13,8 +13,13 @@ export class DashboardPage extends React.Component {
   }
   componentDidUpdate() {
     const path = this.props.path;
+    // console.log(path);
     if (path !== '/' && path !== '/dashboard') {
+      // if (path.indexOf('callback') > -1) {
+      //   this.props.history.push('/');
+      // } else {
       this.props.history.push(path);
+      // }
     }
   }
 
