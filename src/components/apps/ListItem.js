@@ -47,7 +47,7 @@ export default class ListItem extends React.Component {
                         <img src="https://bulma.io/images/placeholders/128x128.png" />
                     </figure> */}
                     <div className="content">
-                        {`{ appId : '${this.state.appId}', 
+                        {`const config ={ appId : '${this.state.appId}', 
                         appName:'${this.state.appName}', 
                         domainName:'${this.state.domainName}', 
                         callbackUrl:'${this.state.callbackUrl}',
