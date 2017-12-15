@@ -46,15 +46,15 @@ export default class ListItem extends React.Component {
                     {/* <figure className="image is-128x128 is-center">
                         <img src="https://bulma.io/images/placeholders/128x128.png" />
                     </figure> */}
-                    {/* <div className="content">
-                        {`const config ={ appId : '${this.state.appId}', 
+                    <div className="content">
+                        {`{ appId : '${this.state.appId}', 
                         appName:'${this.state.appName}', 
                         domainName:'${this.state.domainName}', 
                         callbackUrl:'${this.state.callbackUrl}',
                         securityKey:'auth@kmutnb',
                         authDomain:'kmutnb-auth.herokuapp.com/callback/'
                         }`}
-                    </div> */}
+                    </div>
                     <div className="card">
                         <div className="card-content">
                             <p className="title">Node.js</p>
@@ -103,10 +103,10 @@ export default class ListItem extends React.Component {
 
 
                                         $config = array(
-                                            "appId" => "-L0Oosr9HzBOfUP2kOdW",
-                                            "appName"=>"สวัสดิการ",
-                                            "domainName"=>"localhost:3000", 
-                                            "callbackUrl"=>"localhost:3000/api/auth",
+                                            "appId" => "${this.state.appId}",
+                                            "appName"=>"${this.state.appName}",
+                                            "domainName"=>"${this.state.domainName}", 
+                                            "callbackUrl"=>"${this.state.callbackUrl}",
                                             "securityKey"=>"auth@kmutnb",
                                             "authDomain"=>"kmutnb-auth.herokuapp.com/callback/"
                                         );
