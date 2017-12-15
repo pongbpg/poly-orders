@@ -48,7 +48,7 @@ export default class ListItem extends React.Component {
             //     }
             // </div>
             <div className={`tile is-parent is-${this.props.size}`}>
-                <article className={`tile is-child notification is-${colorRandom}`}>
+                <article className={`tile is-child notification`}>
                     {/* <p className="title"></p> */}
                     <p className="subtitle">{this.state.appName.toUpperCase()}</p>
                     <figure className="image is-128x128 is-center">
@@ -60,9 +60,9 @@ export default class ListItem extends React.Component {
                     <div className="field">
                         {
                             this.state.hasSelected === true ? (
-                                <button className="button is-danger is-inverted is-hovered" onClick={this.onRemoveUserApp}>ยกเลิกใช้งาน</button>
+                                <button className="button is-danger is-hovered" onClick={this.onRemoveUserApp}>ยกเลิกใช้งาน</button>
                             ) : (
-                                    <button className="button is-info is-inverted" onClick={this.onAddUserApp}>สมัครใช้งาน</button>
+                                    <button className="button is-info is-hovered" onClick={this.onAddUserApp}>สมัครใช้งาน</button>
                                 )
                         }
                     </div>

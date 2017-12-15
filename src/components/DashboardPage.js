@@ -50,6 +50,7 @@ export class DashboardPage extends React.Component {
     return (
       <div>
         <ListApps />
+        <ListLogins />
       </div>
     );
   }

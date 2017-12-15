@@ -73,9 +73,9 @@ export class Header extends React.Component {
                     <Link className="navbar-item" to="/">
                       My Apps
                   </Link>
-                    <a className="navbar-item">
+                    <Link className="navbar-item" to="/account">
                       My Accounts
-                  </a>
+                  </Link>
                     <hr className="navbar-divider" />
                     <div className="navbar-item">
                       <a className="button" onClick={this.props.startLogout}>

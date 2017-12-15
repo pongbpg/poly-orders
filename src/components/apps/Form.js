@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 
 export default class AppForm extends React.Component {
@@ -44,34 +45,85 @@ export default class AppForm extends React.Component {
     };
     render() {
         return (
+            // <form className="form" onSubmit={this.onSubmit}>
+            //     {this.state.error && <p className="form__error">{this.state.error}</p>}
+            //     <input
+            //         type="text"
+            //         placeholder="App Name"
+            //         autoFocus
+            //         className="text-input"
+            //         value={this.state.appName}
+            //         onChange={this.onAppNameChange}
+            //         ref={(c) => { this.appName = c; }}
+            //     />
+            //     <input
+            //         type="text"
+            //         className="text-input"
+            //         placeholder="Domain Name"
+            //         value={this.state.domainName}
+            //         disabled
+            //     // onChange={this.onDomainNameChange}
+            //     />
+            //     <input
+            //         type="text"
+            //         placeholder="Callback URL"
+            //         className="text-input"
+            //         value={this.state.callbackUrl}
+            //         disabled
+            //     // onChange={this.onCallbackUrlChange}
+            //     />
+            //     <button className="button">Save</button>
+            // </form>
             <form className="form" onSubmit={this.onSubmit}>
-                {this.state.error && <p className="form__error">{this.state.error}</p>}
-                <input
-                    type="text"
-                    placeholder="App Name"
-                    autoFocus
-                    className="text-input"
-                    value={this.state.appName}
-                    onChange={this.onAppNameChange}
-                    ref={(c) => { this.appName = c; }}
-                />
-                <input
-                    type="text"
-                    placeholder="Domain Name"
-                    className="text-input"
-                    value={this.state.domainName}
-                    disabled
-                // onChange={this.onDomainNameChange}
-                />
-                <input
-                    type="text"
-                    placeholder="Callback URL"
-                    className="text-input"
-                    value={this.state.callbackUrl}
-                    disabled
-                // onChange={this.onCallbackUrlChange}
-                />
-                <button className="button">Save</button>
+                <div className="column is-8 is-offset-2">
+                    <div className="field">
+                        <label className="label">ชื่อแอพพลิเคชั่น</label>
+                        <div className="control">
+                            <input className="input" type="text"
+                                type="text"
+                                placeholder="แอพพลิเคชั่น"
+                                autoFocus
+                                value={this.state.appName}
+                                onChange={this.onAppNameChange}
+                                ref={(c) => { this.appName = c; }}
+                            />
+                        </div>
+                    </div>
+                    <div className="field">
+                        <label className="label">ชื่อโดเมน</label>
+                        <div className="control">
+                            <input className="input" type="text"
+                                placeholder="Domain Name"
+                                value={this.state.domainName}
+                                disabled
+                            />
+                        </div>
+                    </div>
+                    <div className="field">
+                        <label className="label">Callback url</label>
+                        <div className="control">
+                            <input className="input" type="text"
+                                placeholder="Callback url"
+                                value={this.state.callbackUrl}
+                                disabled
+                            />
+                        </div>
+                    </div>
+                    <div className="field">
+                        <label className="label">รายละเอียด</label>
+                        <div className="control">
+                            <textarea className="textarea" placeholder="Textarea"></textarea>
+                        </div>
+                    </div>
+                    <div className="field is-grouped">
+                        <div className="control">
+                            <button className="button is-link">เพิ่ม</button>
+                        </div>
+                        <div className="control">
+                            <Link className="button is-danger is-link" to="/">ยกเลิก</Link>
+                        </div>
+                    </div>
+                </div>
             </form>
         );
     }

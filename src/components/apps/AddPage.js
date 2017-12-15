@@ -14,16 +14,17 @@ export class AddPage extends React.Component {
     };
     render() {
         return (
-            <div>
-                <div className="page-header">
-                    <div className="content-container">
-                        <h1 className="page-header__title">เพิ่มแอพ</h1>
-                    </div>
-                </div>
-                <div className="content-container">
-                    <AppForm onSubmit={this.onSubmit} />
-                </div>
-            </div>
+            // <div>
+            //     <div className="page-header">
+            //         <div className="content-container">
+            //             <h1 className="page-header__title">เพิ่มแอพ</h1>
+            //         </div>
+            //     </div>
+            //     <div className="content-container">
+            //         <AppForm onSubmit={this.onSubmit} />
+            //     </div>
+            // </div>
+            <AppForm onSubmit={this.onSubmit} />
         );
     }
 }

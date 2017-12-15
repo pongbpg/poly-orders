@@ -1,13 +1,15 @@
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import AppRouter, { history } from './routers/AppRouter';
-import configureStore from './store/configureStore';
-import { login, logout } from './actions/auth';
+
 import { checkLogin } from './actions/logins';
 import { getUser, resetUser } from './actions/users';
-import { startListApps } from './actions/apps';
 import { listUsers } from './actions/users';
+import { login, logout } from './actions/auth';
+import { startListApps } from './actions/apps';
+import AppRouter, { history } from './routers/AppRouter';
+import configureStore from './store/configureStore';
+
 // import 'normalize.css/normalize.css';
 // import './styles/styles.scss';
 import 'bulma/css/bulma.css'

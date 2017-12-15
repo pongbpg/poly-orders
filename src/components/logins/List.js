@@ -5,12 +5,12 @@ import ListItem from './ListItem';
 export class ListLogins extends React.Component {
     render() {
         return (
-            <div className="content-container">
-                <div className="list-header">
+            <div className="container">
+                {/* <div className="list-header">
                     <div className="show-for-mobile">ผู้ให้บริการ</div>
                     <div className="show-for-desktop">ผู้ให้บริการ</div>
                     <div className="show-for-desktop">ชื่อ/อีเมลล์</div>
-                </div>
+                </div> */}
                 <div className="list-body">
                     {
                         this.props.logins.length === 0 ? (

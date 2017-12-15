@@ -14,31 +14,56 @@ export class ListApps extends React.Component {
         // console.log('list users');
         // console.log(this.props.users);
         return (
-            <div className="content-container">
-                <div className="list-header">
-                    <div className="show-for-mobile">รหัสประชาชน</div>
-                    <div className="show-for-desktop">รหัสประชาชน</div>
-                    <div className="show-for-desktop">สถานะ</div>
-                </div>
-                <div className="list-body">
-                    {
-                        this.props.users.length === 0 ? (
-                            <div className="list-item list-item--message">
-                                <span>ไม่มีสมาชิก</span>
-                            </div>
-                        ) : (
-                                this.props.users.map((user) => {
-                                    return <ListItem
-                                        key={user.idcard}
-                                        user={user}
-                                        onAddRoleAdmin={this.onAddRoleAdmin}
-                                        onAddRoleUser={this.onAddRoleUser}
-                                    />;
-                                })
-                            )
-                    }
-                </div>
+            // <div className="content-container">
+            //     <div className="list-header">
+            //         <div className="show-for-mobile">รหัสประชาชน</div>
+            //         <div className="show-for-desktop">รหัสประชาชน</div>
+            //         <div className="show-for-desktop">สถานะ</div>
+            //     </div>
+            //     <div className="list-body">
+            //         {
+            //             this.props.users.length === 0 ? (
+            //                 <div className="list-item list-item--message">
+            //                     <span>ไม่มีสมาชิก</span>
+            //                 </div>
+            //             ) : (
+            //                     this.props.users.map((user) => {
+            //                         return <ListItem
+            //                             key={user.idcard}
+            //                             user={user}
+            //                             onAddRoleAdmin={this.onAddRoleAdmin}
+            //                             onAddRoleUser={this.onAddRoleUser}
+            //                         />;
+            //                     })
+            //                 )
+            //         }
+            //     </div>
+            // </div>
+            <div className="column is-8 is-offset-2">
+                <table className="table is-bordered is-striped is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>ลำดับ</th>
+                            <th>รหัสประชาชน</th>
+                            <th>สถานะ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.props.users.map((user, index) => {
+                                return <ListItem
+                                    key={user.idcard}
+                                    index={index}
+                                    user={user}
+                                    onAddRoleAdmin={this.onAddRoleAdmin}
+                                    onAddRoleUser={this.onAddRoleUser}
+                                />;
+                            })
+                        }
+                    </tbody>
+                </table>
             </div>
+
         );
     }
 };
