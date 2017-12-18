@@ -40,7 +40,7 @@ export default class ListItem extends React.Component {
             <div className={`tile is-parent is-${this.props.size}`}>
                 <article className={`tile is-child notification`}>
                     <p className="title">
-                        <a href={"https://" + this.state.callbackUrl + "?token=" + token}><span className="is-small">{this.state.appName.toUpperCase()}</span></a>
+                        <a href={"http://" + this.state.callbackUrl + "?token=" + token}><span className="is-small">{this.state.appName.toUpperCase()}</span></a>
                     </p>
                     {/* <p className="subtitle">{this.state.appName.toUpperCase()}</p> */}
                     {/* <figure className="image is-128x128 is-center">

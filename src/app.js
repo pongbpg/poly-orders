@@ -58,10 +58,15 @@ firebase.auth().onAuthStateChanged((user) => {
           const path = store.getState().sys.path;
           if (typeof path === 'string') {
             if (path.indexOf('callback') > -1) {
-              const callbackUrl = path.split('/')[2];
-              const appId = path.split('/')[3];
-              const token = jwt.sign({ appId, callbackUrl, idcard: store.getState().auth.idcard }, 'auth@kmutnb');
-              window.location = `https://${callbackUrl}?token=${token}`
+              const search = path.split("?")[1].split("&");
+              let config = {};
+              for (var i = 0; i < search.length; i++) {
+                const query = search[i].split('=');
+                config[query[0]] = query[1];
+              }
+              // console.log(config);
+              const token = jwt.sign({ appId: config.appId, callbackUrl: config.callbackUrl, idcard: store.getState().auth.idcard }, 'auth@kmutnb');
+              window.location = `http://${config.callbackUrl}?token=${token}`
             }
           }
           history.push(store.getState().sys.path);
@@ -71,7 +76,7 @@ firebase.auth().onAuthStateChanged((user) => {
   } else {
     store.dispatch(logout());
     store.dispatch(resetUser());
-    store.dispatch(setPath(history.location.pathname));
+    store.dispatch(setPath(history.location.pathname + (history.location.search ? history.location.search : "")));
     renderApp();
     history.push('/');
   }
