@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import uuid from 'uuid';
 import ListItem from './ListItem';
 import { addUserApp, removeUserApp } from '../../actions/users';
-import selectApps from '../../selectors/apps';
+import selectApps from '../../selectors/myapps';
 
 export class ListApps extends React.Component {
     constructor(props) {
@@ -107,7 +107,7 @@ export class ListApps extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        apps: state.apps,
+        apps: selectApps(state.apps,state.user.apps),
         idcard: state.auth.idcard
     }
 };

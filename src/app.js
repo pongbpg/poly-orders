@@ -42,7 +42,11 @@ firebase.auth().onAuthStateChanged((user) => {
   // console.log('authState', user)
   if (user) {
     // console.log(user);
-    store.dispatch(login(user.uid, user.providerData[0]));
+    const providerData = {
+      ...user.providerData[0],
+      email: user.emailVerified ? user.email : user.providerData[0].email
+    };
+    store.dispatch(login(user.uid, providerData));
     store.dispatch(checkLogin(user)).then(() => {
       if (!store.getState().auth.hasIDCard) {
         renderApp();
@@ -65,7 +69,7 @@ firebase.auth().onAuthStateChanged((user) => {
                 config[query[0]] = query[1];
               }
               // console.log(config);
-              const token = jwt.sign({ appId: config.appId, callbackUrl: config.callbackUrl, idcard: store.getState().auth.idcard }, 'auth@kmutnb');
+              const token = jwt.sign({ ...config, idcard: store.getState().auth.idcard }, 'auth@kmutnb');
               window.location = `http://${config.callbackUrl}?token=${token}`
             }
           }

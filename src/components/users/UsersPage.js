@@ -8,11 +8,8 @@ class UsersPage extends React.Component {
         this.props.setTitle('รายการผู้ใช้งาน')
     }
     render() {
-        const marginTop = {
-            marginTop: '20px'
-        };
         return (
-            <div style={marginTop}>
+            <div>
                 <ListUsers />
             </div>
         )

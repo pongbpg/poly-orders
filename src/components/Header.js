@@ -56,7 +56,7 @@ export class Header extends React.Component {
               {
                 this.props.role === 'admin' && (
                   <div className="navbar-start">
-                    <Link className="navbar-item" to="/create">Apps</Link>
+                    <Link className="navbar-item" to="/apps">Apps</Link>
                     <Link className="navbar-item" to="/users">Users</Link>
                   </div>
                 )
@@ -90,9 +90,9 @@ export class Header extends React.Component {
           </div>
         </nav >
         <section className="hero">
-          <div className="hero-body is-marginless">
+          <div className="hero-body is-marginless is-bold">
             <div className="container">
-              <h2 className="title">{this.state.title}</h2>
+              <h1 className="title">{this.state.title}</h1>
               {/* <h2 class="subtitle">Hero subtitle</h2> */}
             </div>
           </div>

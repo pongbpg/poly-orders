@@ -2,8 +2,8 @@ import database from '../firebase/firebase';
 import { setAuth } from './logins';
 import { startListApps } from './apps';
 
-export const addUser = (loginId, idcard, providerData) => {
-    const provider = providerData.providerId.split('.')[0];
+export const addUser = (loginId, idcard, providerData, upis) => {
+    // const provider = providerData.providerId.split('.')[0];
     const data = {
         loginId: loginId,
         idcard: idcard,
@@ -13,24 +13,34 @@ export const addUser = (loginId, idcard, providerData) => {
         return database.ref(`users/${idcard}/logins/${loginId}`)
             .set(data)
             .then(() => {
-                return database.ref(`logins/${loginId}/idcard`)
-                    .set(idcard)
-                    .then(() => {
-                        dispatch(setAuth(loginId, { idcard }, { hasIDCard: true }));
-                        dispatch(getUser(idcard));
-                    });
+                dispatch(setUPIS(idcard, upis));
+                dispatch(setIdcardLogin(idcard, loginId));
+                dispatch(setAuth(loginId, { idcard }, { hasIDCard: true }));
+                dispatch(getUser(idcard));
             });
+    }
+};
+
+export const setUPIS = (idcard, upis) => {
+    return (dispatch) => {
+        return database.ref(`users/${idcard}/upis`).set(upis)
+    }
+};
+
+export const setIdcardLogin = (idcard, loginId) => {
+    return (dispatch) => {
+        return database.ref(`logins/${loginId}/idcard`).set(idcard)
     }
 };
 
 export const getUser = (idcard) => {
     return (dispatch) => {
         return database.ref(`users/${idcard}`).on('value', (snapshot) => {
-            const user = { apps: [], logins: [], role: 'user' };
+            const user = { apps: [], logins: [], role: 'user', upis: {} };
             snapshot.forEach((childSnapshot) => {
                 const key = childSnapshot.key;
-                if (key === 'role') {
-                    user.role = childSnapshot.val();
+                if (key === 'role' || key === 'upis') {
+                    user[key] = childSnapshot.val();
                 } else {
                     childSnapshot.forEach((data) => {
                         user[key].push({ ...data.val() });
