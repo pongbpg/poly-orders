@@ -2,11 +2,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { checkLogin } from './actions/logins';
-import { getUser, resetUser } from './actions/users';
-import { listUsers } from './actions/users';
-import { login, logout } from './actions/auth';
-import { startListApps } from './actions/apps';
+import { checkLogin, logout } from './actions/auth';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 
@@ -39,49 +35,14 @@ const renderApp = () => {
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
-  // console.log('authState', user)
+
+  renderApp();
   if (user) {
-    // console.log(user);
-    const providerData = {
-      ...user.providerData[0],
-      email: user.emailVerified ? user.email : user.providerData[0].email
-    };
-    store.dispatch(login(user.uid, providerData));
-    store.dispatch(checkLogin(user)).then(() => {
-      if (!store.getState().auth.hasIDCard) {
-        renderApp();
-        history.push('/idcard');
-      } else {
-        renderApp();
-        store.dispatch(getUser(store.getState().auth.providerData.idcard))
-        store.dispatch(startListApps(store.getState().user.apps));
-        store.dispatch(listUsers());
-        if (history.location.pathname === '/' && store.getState().sys.path === '/') {
-          history.push('/dashboard');
-        } else {
-          const path = store.getState().sys.path;
-          if (typeof path === 'string') {
-            if (path.indexOf('callback') > -1) {
-              const search = path.split("?")[1].split("&");
-              let config = {};
-              for (var i = 0; i < search.length; i++) {
-                const query = search[i].split('=');
-                config[query[0]] = query[1];
-              }
-              // console.log(config);
-              const token = jwt.sign({ ...config, idcard: store.getState().auth.idcard }, 'auth@kmutnb');
-              window.location = `http://${config.callbackUrl}?token=${token}`
-            }
-          }
-          history.push(store.getState().sys.path);
-        }
-      }
-    });
+    store.dispatch(checkLogin(user));
   } else {
     store.dispatch(logout());
-    store.dispatch(resetUser());
-    store.dispatch(setPath(history.location.pathname + (history.location.search ? history.location.search : "")));
-    renderApp();
     history.push('/');
+    // renderApp();
   }
+
 });

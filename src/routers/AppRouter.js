@@ -4,13 +4,11 @@ import createHistory from 'history/createBrowserHistory';
 import LoginPage from '../components/LoginPage';
 import DashboardPage from '../components/DashboardPage';
 import NotFoundPage from '../components/NotFoundPage';
-import IDCardPage from '../components/IDCardPage';
-import ListAppPage from '../components/apps/ListPage';
-import AddAppPage from '../components/apps/AddPage';
-import EditAppPage from '../components/apps/EditPage';
+import AddressPage from '../components/AddressPage';
+import OrderAddPage from '../components/orders/AddPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import UsersPage from '../components/users/UsersPage';
+import RegisterRoute from './RegisterRoute';
 export const history = createHistory();
 
 const AppRouter = () => (
@@ -18,13 +16,9 @@ const AppRouter = () => (
     <div>
       <Switch>
         <PublicRoute path="/" component={LoginPage} exact={true} />
-        <PrivateRoute path="/callback" component={DashboardPage} />
-        <PrivateRoute path="/idcard" component={IDCardPage} />
-        <PrivateRoute path="/dashboard" component={DashboardPage} />
-        <PrivateRoute path="/apps/add" component={AddAppPage} />
-        <PrivateRoute path="/apps/edit/:id" component={EditAppPage} />
-        <PrivateRoute path="/apps" component={ListAppPage} />
-        <PrivateRoute path="/users" component={UsersPage} />
+        <PrivateRoute path="/address" component={AddressPage} />
+        <RegisterRoute path="/dashboard" component={DashboardPage} />
+        <RegisterRoute path="/orders/add" component={OrderAddPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

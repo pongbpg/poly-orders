@@ -3,23 +3,25 @@ export default (state = {}, action) => {
         case 'LOGIN':
             return {
                 uid: action.uid,
-                providerData: action.providerData,
-                hasIDCard: false,
-                idcard:undefined
-            };
-        case 'LOGOUT':
-            return {};
-        case 'SET_AUTH':
-            return {
-                ...state,
-                uid:action.uid,
                 providerData: {
                     ...state.providerData,
                     ...action.providerData
                 },
-                hasIDCard: action.hasIDCard || false,
-                idcard: action.providerData.idcard||undefined
+                orders: [],
+                hasAddress: action.hasAddress
             };
+        case 'LOGOUT':
+            return {};
+        // case 'SET_AUTH':
+        //     return {
+        //         ...state,
+        //         uid: action.uid,
+        //         providerData: {
+        //             ...state.providerData,
+        //             ...action.providerData
+        //         },
+        //         hasAddress: action.hasAddress
+        //     };
         default:
             return state;
     }

@@ -7,14 +7,14 @@ import MdAddCircle from 'react-icons/lib/md/add-circle';
 export class ListApps extends React.Component {
     constructor(props) {
         super(props);
-        this.props.setTitle('รายการแอพพลิเคชั่น')
+        this.props.setTitle('ตระกร้าสินค้าของฉัน')
     }
     render() {
         return (
             <div className="column is-8 is-offset-2">
                 <div className="columns is-pulled-right">
                     <div className="column">
-                        <Link className="button is-info" to="/apps/add" ><MdAddCircle />&nbsp;เพิ่มแอพ</Link>
+                        <Link className="button is-info" to="/orders/add" ><MdAddCircle />&nbsp;สั่งซื้อ</Link>
                     </div>
                 </div>
                 <div className="columns">
@@ -23,18 +23,18 @@ export class ListApps extends React.Component {
                             <thead>
                                 <tr>
                                     <th className="has-text-centered">ลำดับ</th>
-                                    <th className="has-text-centered">แอพพลิเคชั่น</th>
+                                    <th className="has-text-centered">รายละเอียด</th>
                                     <th className="has-text-centered">สถานะ</th>
                                     <th className="has-text-centered">เครื่องมือ</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    this.props.apps.map((app, index) => {
+                                    this.props.orders.map((order, index) => {
                                         return <ListItem
-                                            key={app.id}
+                                            key={order.id}
                                             index={index}
-                                            app={app}
+                                            app={order}
                                         />;
                                     })
                                 }
@@ -48,7 +48,7 @@ export class ListApps extends React.Component {
 };
 
 const mapStateToProps = (state) => ({
-    apps: state.apps
+    orders: state.auth.orders
 });
 const mapDispatchToProps = (dispatch, props) => ({
     setTitle: (title) => dispatch(setTitle(title))

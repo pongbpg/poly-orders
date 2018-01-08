@@ -1,4 +1,6 @@
 import database, { firebase, googleAuthProvider, facebookAuthProvider } from '../firebase/firebase';
+import { history } from '../routers/AppRouter';
+
 
 export const startLoginWithGoogle = () => {
     return () => {
@@ -12,10 +14,11 @@ export const startLoginWithFacebook = () => {
     };
 };
 
-export const login = (uid, providerData) => ({
+export const login = (uid, providerData, { hasAddress }) => ({
     type: 'LOGIN',
     uid,
-    providerData
+    providerData,
+    hasAddress
 });
 
 export const logout = () => ({
@@ -27,3 +30,39 @@ export const startLogout = () => {
         return firebase.auth().signOut();
     };
 };
+
+
+export const checkLogin = (user) => {
+    const providerData = {
+        ...user.providerData[0],
+        email: user.emailVerified ? user.email : user.providerData[0].email
+    };
+    return (dispatch) => {
+        return database.ref(`members/${user.uid}`).once('value')
+            .then((snapshot) => {
+                if (snapshot.hasChild('address')) {
+                    dispatch(login(user.uid, {
+                        ...snapshot.val(),
+                        ...providerData
+                    }, { hasAddress: true }));
+                    history.push('/dashboard');
+                } else {
+                    dispatch(updateMember(user.uid, providerData))
+                        .then((ref) => {
+                            return dispatch(login(user.uid, providerData, { hasAddress: false }));
+                        })
+                        .then(() => {
+                            history.push('/address');
+                        });
+                }
+            });
+    }
+};
+
+export const updateMember = (uid, providerData) => {
+    return (dispatch) => {
+        return database.ref(`members/${uid}`).update(providerData)
+    };
+};
+
+

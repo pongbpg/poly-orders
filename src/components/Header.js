@@ -42,10 +42,10 @@ export class Header extends React.Component {
       //   </div>
       // </header>
       <div>
-        <nav className="navbar is-dark">
+        <nav className="navbar is-danger">
           <div className="container">
             <div className="navbar-brand">
-              <Link className="navbar-item brand-text" to="/">KMUTNB AUTH</Link>
+              <Link className="navbar-item brand-text" to="/">POLY T-SHIRT</Link>
               <div className="navbar-burger burger" data-target="navMenu">
                 <span></span>
                 <span></span>
@@ -67,14 +67,14 @@ export class Header extends React.Component {
                     <figure className="image is-32x32">
                       <img style={borderRadius} src={this.props.providerData.photoURL} title={this.props.providerData.displayName} />
                     </figure>
-                    &nbsp;{this.props.providerData.displayName}
+                    &nbsp;{this.props.providerData.name ? this.props.providerData.name : this.props.providerData.displayName}
                   </a>
                   <div className="navbar-dropdown">
                     <Link className="navbar-item" to="/">
                       My Apps
                   </Link>
-                    <Link className="navbar-item" to="/account">
-                      My Accounts
+                    <Link className="navbar-item" to="/address">
+                      My Address
                   </Link>
                     <hr className="navbar-divider" />
                     <div className="navbar-item">
@@ -103,7 +103,7 @@ export class Header extends React.Component {
 }
 const mapStateToProps = (state) => ({
   providerData: state.auth.providerData,
-  role: state.user.role,
+  role: state.auth.role,
   title: state.sys.title
 });
 const mapDispatchToProps = (dispatch) => {
