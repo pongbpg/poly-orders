@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 import MdExitToApp from 'react-icons/lib/md/exit-to-app';
+import FaHome from 'react-icons/lib/fa/home';
 import { setTitle } from '../actions/sys';
 
 export class Header extends React.Component {
@@ -45,7 +46,7 @@ export class Header extends React.Component {
         <nav className="navbar is-danger">
           <div className="container">
             <div className="navbar-brand">
-              <Link className="navbar-item brand-text" to="/">POLY T-SHIRT</Link>
+              <Link className="navbar-item brand-text" to="/"><FaHome />&nbsp;หน้าแรก</Link>
               <div className="navbar-burger burger" data-target="navMenu">
                 <span></span>
                 <span></span>
@@ -56,8 +57,8 @@ export class Header extends React.Component {
               {
                 this.props.role === 'admin' && (
                   <div className="navbar-start">
-                    <Link className="navbar-item" to="/apps">Apps</Link>
-                    <Link className="navbar-item" to="/users">Users</Link>
+                    <Link className="navbar-item" to="/apps">Purchased</Link>
+                    <Link className="navbar-item" to="/users">Tracking</Link>
                   </div>
                 )
               }
@@ -70,17 +71,14 @@ export class Header extends React.Component {
                     &nbsp;{this.props.providerData.name ? this.props.providerData.name : this.props.providerData.displayName}
                   </a>
                   <div className="navbar-dropdown">
-                    <Link className="navbar-item" to="/">
-                      My Apps
-                  </Link>
                     <Link className="navbar-item" to="/address">
-                      My Address
-                  </Link>
+                      -ข้อมูลส่วนตัว
+                    </Link>
                     <hr className="navbar-divider" />
                     <div className="navbar-item">
                       <a className="button" onClick={this.props.startLogout}>
                         <span className="icon"><MdExitToApp /></span>
-                        <span>Logout</span>
+                        <span>ออกจากระบบ</span>
                       </a>
                     </div>
                   </div>

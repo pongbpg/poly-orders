@@ -4,11 +4,14 @@ import FaGoogle from 'react-icons/lib/fa/google';
 import FaFacebook from 'react-icons/lib/fa/facebook';
 import { startLoginWithGoogle, startLoginWithFacebook } from '../actions/auth';
 
-// const styleBg = {
-//     background: 'url("/images/bg.png")',
-//     backgroundSize: 'cover',
-//     height: '100vh'
-// };
+const styleBg = {
+    background: 'url("/images/cover.jpg")',
+    backgroundSize: 'cover',
+    height: '100vh',
+    body: {
+        fontFamily: 'Kanit, sans-serif;'
+    }
+};
 
 export const LoginPage = (props) => (
     // <div className="box-layout">
@@ -18,42 +21,19 @@ export const LoginPage = (props) => (
     //         <button className="button login-facebook box-layout__button" onClick={props.startLoginWithFacebook}><FaFacebook />acebook</button>
     //     </div>
     // </div>
-    <div className="hero is-dark is-fullheight">
+    <div className="hero is-dark is-fullheight" style={styleBg}>
         <div className="hero-body">
             <div className="container has-text-centered">
-                <div className="column is-4 is-offset-4">
-                    <h3 className="title has-text-white">KMUTNB AUTH</h3>
-                    <p className="subtitle has-text-white">Please login to proceed.</p>
-                    <div className="box">
-                        {/* <form> */}
-                        <div className="field">
-                            <div className="control">
-                                <input className="input is-medium" type="email" placeholder="Your Email" autoFocus />
-                            </div>
+                <div className="column is-4 is-offset-4 box">
+                    <h2 className="title has-text-danger"><img src="/images/icon.png" /></h2>
+                    <p className="subtitle has-text-danger">กรุณาล็อกอินเพื่อสั่งซื้อสินค้า</p>
+                    <div className="field is-grouped is-grouped-centered">
+                        <div className="control">
+                            <a className="button is-success" onClick={props.startLoginWithGoogle}>Login with&nbsp;<FaGoogle />oogle</a>
                         </div>
-                        <div className="field">
-                            <div className="control">
-                                <input className="input is-medium" type="password" placeholder="Your Password" />
-                            </div>
+                        <div className="control">
+                            <a className="button is-link" onClick={props.startLoginWithFacebook}>Login with&nbsp;<FaFacebook />acebook</a>
                         </div>
-                        <div className="field">
-                            <label className="checkbox">
-                                <input type="checkbox" />
-                                Remember me
-                                </label>
-                        </div>
-                        <div className="field">
-                            <a className="button is-block is-primary is-large">Login</a>
-                        </div>
-                        <div className="field is-grouped is-grouped-centered">
-                            <div className="control">
-                                <a className="button is-light" onClick={props.startLoginWithGoogle}>Login with&nbsp;<FaGoogle />oogle</a>
-                            </div>
-                            <div className="control">
-                                <a className="button is-link" onClick={props.startLoginWithFacebook}>Login with&nbsp;<FaFacebook />acebook</a>
-                            </div>
-                        </div>
-                        {/* </form> */}
                     </div>
                 </div>
             </div>
