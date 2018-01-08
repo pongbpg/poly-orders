@@ -7,7 +7,7 @@ export default class AppForm extends React.Component {
         this.state = {
             error: '',
             remark: props.order ? props.order.remark : '',
-            amount: props.order ? props.order.amount : 0,
+            amount: props.order ? props.order.amount : 1,
             sizes: props.order ? props.order.sizes : 'S'
         };
     }
