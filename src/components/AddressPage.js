@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 import { login, updateMember } from '../actions/auth';
 import { setTitle } from '../actions/sys';
 export class AddressPage extends React.Component {
@@ -35,7 +36,7 @@ export class AddressPage extends React.Component {
             this.props.updateMember(this.props.uid, data)
                 .then(() => {
                     this.props.login(this.props.uid, data, { hasAddress: true });
-                    this.props.history.push('/');
+                    this.props.history.push('/products');
                 });
         } else {
             console.log('error', this.state);
@@ -155,9 +156,12 @@ export class AddressPage extends React.Component {
                             {/*Left empty for spacing */}
                         </div>
                         <div className="field-body">
-                            <div className="field">
+                            <div className="field is-grouped">
                                 <div className="control">
                                     <button className={`button is-primary ${this.state.submited === true ? "disabled" : ""}`}>บันทึก</button>
+                                </div>
+                                <div className="control">
+                                    <Link className="button is-danger is-link" to="/">ยกเลิก</Link>
                                 </div>
                             </div>
                         </div>

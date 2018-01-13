@@ -7,7 +7,7 @@ export default (state = {}, action) => {
                     ...state.providerData,
                     ...action.providerData
                 },
-                orders: [],
+                carts: [],
                 hasAddress: action.hasAddress
             };
         case 'LOGOUT':

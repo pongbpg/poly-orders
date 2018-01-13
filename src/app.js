@@ -10,11 +10,12 @@ import configureStore from './store/configureStore';
 // import './styles/styles.scss';
 import 'bulma/css/bulma.css'
 import 'react-dates/lib/css/_datepicker.css';
-import { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
-import { storage } from 'firebase';
-import { setPath } from './actions/sys';
-import jwt from 'jsonwebtoken';
+import { listProducts } from './actions/product';
+import { firebase } from './firebase/firebase';
+// import { storage } from 'firebase';
+// import { setPath } from './actions/sys';
+// import jwt from 'jsonwebtoken';
 
 const store = configureStore();
 
@@ -35,14 +36,14 @@ const renderApp = () => {
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
-
   renderApp();
   if (user) {
     store.dispatch(checkLogin(user));
+    store.dispatch(listProducts());
   } else {
     store.dispatch(logout());
     history.push('/');
-    // renderApp();
+    // history.push('/');
   }
 
 });

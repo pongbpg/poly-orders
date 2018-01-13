@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setPath, setTitle } from '../actions/sys';
-import OrderListPage from './orders/ListPage';
+import CartListPage from './carts/ListPage';
 export class DashboardPage extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +11,7 @@ export class DashboardPage extends React.Component {
   render() {
     return (
       <div>
-        <OrderListPage />
+        <CartListPage />
       </div>
     );
   }

@@ -54,14 +54,14 @@ export class Header extends React.Component {
               </div>
             </div>
             <div id="navMenu" className="navbar-menu">
-              {
-                this.props.role === 'admin' && (
-                  <div className="navbar-start">
-                    <Link className="navbar-item" to="/apps">Purchased</Link>
-                    <Link className="navbar-item" to="/users">Tracking</Link>
-                  </div>
-                )
-              }
+              {/* {
+                this.props.role === 'admin' && ( */}
+              <div className="navbar-start">
+                <Link className="navbar-item" to="/products">เลือกสินค้า</Link>
+                <Link className="navbar-item" to="/products/add">เพิ่มสินค้า</Link>
+              </div>
+              {/* )
+              } */}
               <div className="navbar-end">
                 <div className={this.state.isActive === true ? "navbar-item has-dropdown is-active" : "navbar-item has-dropdown"}>
                   <a className="navbar-link" onClick={this.toggleIsActive}>

@@ -45,7 +45,7 @@ export const checkLogin = (user) => {
                         ...snapshot.val(),
                         ...providerData
                     }, { hasAddress: true }));
-                    history.push('/dashboard');
+                    history.push('/products');
                 } else {
                     dispatch(updateMember(user.uid, providerData))
                         .then((ref) => {

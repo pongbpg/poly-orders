@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import OrderForm from './Form';
+import CartForm from './Form';
 // import { startAddApp } from '../../actions/apps';
 import { setTitle } from '../../actions/sys';
-export class OrderAddPage extends React.Component {
+export class CartAddPage extends React.Component {
     constructor(props) {
         super(props);
         this.props.setTitle('เพิ่มรายการสั่งซื้อ')
@@ -14,7 +14,7 @@ export class OrderAddPage extends React.Component {
     };
     render() {
         return (
-            <OrderForm onSubmit={this.onSubmit} />
+            <CartForm onSubmit={this.onSubmit} />
         );
     }
 }
@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatch) => ({
     setTitle: (title) => dispatch(setTitle(title))
 });
 
-export default connect(undefined, mapDispatchToProps)(OrderAddPage);
+export default connect(undefined, mapDispatchToProps)(CartAddPage);

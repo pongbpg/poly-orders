@@ -14,7 +14,7 @@ export class ListApps extends React.Component {
             <div className="column is-8 is-offset-2">
                 <div className="columns is-pulled-right">
                     <div className="column">
-                        <Link className="button is-info" to="/orders/add" ><MdAddCircle />&nbsp;สั่งซื้อ</Link>
+                        <Link className="button is-info" to="/carts/add" ><MdAddCircle />&nbsp;สั่งซื้อ</Link>
                     </div>
                 </div>
                 <div className="columns">
@@ -30,7 +30,7 @@ export class ListApps extends React.Component {
                             </thead>
                             <tbody>
                                 {
-                                    this.props.orders.map((order, index) => {
+                                    this.props.carts.map((order, index) => {
                                         return <ListItem
                                             key={order.id}
                                             index={index}
@@ -48,7 +48,7 @@ export class ListApps extends React.Component {
 };
 
 const mapStateToProps = (state) => ({
-    orders: state.auth.orders
+    carts: state.auth.carts
 });
 const mapDispatchToProps = (dispatch, props) => ({
     setTitle: (title) => dispatch(setTitle(title))
