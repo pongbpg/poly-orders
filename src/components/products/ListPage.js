@@ -51,7 +51,7 @@ export class ListProducts extends React.Component {
                                             <div key={product.id} className="tile is-parent is-2 level-item">
                                                 <article className="tile is-child box">
                                                     <nav className="level is-grouped is-grouped-multiline">
-                                                        <div className="title">id:{product.id}</div>
+                                                        <div className="title">P{product.id}</div>
 
                                                         <div className="control">
                                                             <div className="tags has-addons">
