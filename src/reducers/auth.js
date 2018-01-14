@@ -8,6 +8,7 @@ export default (state = {}, action) => {
                     ...action.providerData
                 },
                 carts: [],
+                like: action.providerData.like ? action.providerData.like : [],
                 hasAddress: action.hasAddress
             };
         case 'LOGOUT':

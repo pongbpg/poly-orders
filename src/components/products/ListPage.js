@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import ListItem from './ListItem';
+import ListItem from './ListItem';
 import { setTitle } from '../../actions/sys';
-import OrderForm from './OrderForm';
+import { addLike, disLike, listProducts } from '../../actions/product';
+import selectProducts from '../../selectors/products';
 export class ListProducts extends React.Component {
     constructor(props) {
         super(props);
@@ -12,14 +12,19 @@ export class ListProducts extends React.Component {
             datas: [],
             rowsNo: 0,
             sizeTile: 3,
-            productsCount: 0
+            productsCount: 0,
+            uid: props.uid
         };
         this.props.setTitle('เลือกลายเสื้อ');
-        // console.log(this.props.listProducts());
     }
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.products != this.state.products) {
             this.sliceArray(nextProps.products);
+        }
+        if (nextProps.uid != this.state.uid) {
+            this.setState(() => ({
+                uid: nextProps.uid
+            }));
         }
     }
     componentWillMount = () => {
@@ -38,6 +43,12 @@ export class ListProducts extends React.Component {
             datas
         }))
     }
+    onLike = (pid) => {
+        this.props.addLike(this.state.uid, pid);
+    }
+    onDisLike = (pid) => {
+        this.props.disLike(this.state.uid, pid);
+    }
     render() {
         return (
             <div className="container">
@@ -48,35 +59,12 @@ export class ListProducts extends React.Component {
                                 {
                                     products.map((product) => {
                                         return (
-                                            <div key={product.id} className="tile is-parent is-2 level-item">
-                                                <article className="tile is-child box">
-                                                    <nav className="level is-grouped is-grouped-multiline">
-                                                        <div className="title">P{product.id}</div>
-
-                                                        <div className="control">
-                                                            <div className="tags has-addons">
-                                                                <span className="tag is-dark">Liked</span>
-                                                                <span className="tag is-info">98</span>
-                                                            </div>
-                                                        </div>
-                                                        <div className="control">
-                                                            <div className="tags has-addons">
-                                                                <span className="tag is-dark">Ordered</span>
-                                                                <span className="tag is-success">1,234</span>
-                                                            </div>
-                                                        </div>
-
-                                                    </nav>
-                                                    <div className="column has-text-centered">
-                                                        <figure className="image is-1by1">
-                                                            <img src={product.downloadURLs[0]} />
-                                                        </figure>
-                                                    </div>
-                                                    <div className="content">
-                                                        <OrderForm />
-                                                    </div>
-                                                </article>
-                                            </div>
+                                            <ListItem
+                                                key={product.id}
+                                                product={product}
+                                                onLike={this.onLike}
+                                                onDisLike={this.onDisLike}
+                                            />
                                         )
                                     })
                                 }
@@ -89,10 +77,21 @@ export class ListProducts extends React.Component {
     }
 };
 
-const mapStateToProps = (state) => ({
-    products: state.products
-});
+const mapStateToProps = (state) => {
+    // console.log(state.auth.uid)
+    return {
+        products: selectProducts(state.products, state.auth.like),
+        uid: state.auth.uid
+    }
+}
+// ({
+//     products: state.products,
+//     memderId: state.auth.uid
+// });
 const mapDispatchToProps = (dispatch, props) => ({
-    setTitle: (title) => dispatch(setTitle(title))
+    setTitle: (title) => dispatch(setTitle(title)),
+    addLike: (uid, pid) => dispatch(addLike(uid, pid)),
+    disLike: (uid, pid) => dispatch(disLike(uid, pid)),
+    listProducts: () => dispatch(listProducts())
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ListProducts);

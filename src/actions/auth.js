@@ -38,24 +38,30 @@ export const checkLogin = (user) => {
         email: user.emailVerified ? user.email : user.providerData[0].email
     };
     return (dispatch) => {
-        return database.ref(`members/${user.uid}`).once('value')
-            .then((snapshot) => {
-                if (snapshot.hasChild('address')) {
-                    dispatch(login(user.uid, {
-                        ...snapshot.val(),
-                        ...providerData
-                    }, { hasAddress: true }));
-                    history.push('/products');
-                } else {
-                    dispatch(updateMember(user.uid, providerData))
-                        .then((ref) => {
-                            return dispatch(login(user.uid, providerData, { hasAddress: false }));
-                        })
-                        .then(() => {
-                            history.push('/address');
-                        });
-                }
-            });
+        return database.ref(`members/${user.uid}`).on('value', (snapshot) => {
+            if (snapshot.hasChild('address')) {
+                const like = snapshot.val().like ?
+                    Object.keys(snapshot.val().like)
+                        .map((m) => ({
+                            pid: m
+                        })) : [];
+                // console.log(like);
+                dispatch(login(user.uid, {
+                    ...snapshot.val(),
+                    ...providerData,
+                    like
+                }, { hasAddress: true }));
+                history.push('/products');
+            } else {
+                dispatch(updateMember(user.uid, providerData))
+                    .then((ref) => {
+                        return dispatch(login(user.uid, providerData, { hasAddress: false }));
+                    })
+                    .then(() => {
+                        history.push('/address');
+                    });
+            }
+        });
     }
 };
 
