@@ -41,8 +41,8 @@ export default class ListItem extends React.Component {
 
                         <div className="control">
                             <div className="tags has-addons">
-                                {this.state.hasLike === false && <a className="tag is-info button" onClick={this.onAddLike}><FaThumbsOUp /></a>}
-                                {this.state.hasLike === true && <a className="tag is-danger button" onClick={this.onDisLike}><FaThumbsODown /></a>}
+                                {this.state.hasLike === false && <a className="tag button" onClick={this.onAddLike}><FaThumbsOUp /></a>}
+                                {this.state.hasLike === true && <a className="tag  is-info button" onClick={this.onDisLike}><FaThumbsOUp /></a>}
                                 <span className="tag is-dark">{this.state.like}</span>
                             </div>
                         </div>
