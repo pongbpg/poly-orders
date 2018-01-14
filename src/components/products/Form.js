@@ -85,7 +85,7 @@ export default class ProductForm extends React.Component {
                     </div>
                     <div className="field-body">
                         <div className="field">
-                            <figure className="image is-96x96">
+                            <figure className="image is-1by1">
                                 <img src={this.state.productImage.preview ? this.state.productImage.preview : 'https://bulma.io/images/placeholders/128x128.png'} />
                             </figure>
                         </div>

@@ -55,7 +55,7 @@ export class ListProducts extends React.Component {
 
                                                         <div className="control">
                                                             <div className="tags has-addons">
-                                                                <span className="tag is-dark">Like</span>
+                                                                <span className="tag is-dark">Liked</span>
                                                                 <span className="tag is-info">98</span>
                                                             </div>
                                                         </div>
@@ -68,7 +68,7 @@ export class ListProducts extends React.Component {
 
                                                     </nav>
                                                     <div className="column has-text-centered">
-                                                        <figure className="image is-128x128" style={{ textAlign: 'center' }}>
+                                                        <figure className="image is-1by1">
                                                             <img src={product.downloadURLs[0]} />
                                                         </figure>
                                                     </div>
