@@ -161,7 +161,7 @@ export class AddressPage extends React.Component {
                                     <button className={`button is-primary ${this.state.submited === true ? "disabled" : ""}`}>บันทึก</button>
                                 </div>
                                 <div className="control">
-                                    <Link className="button is-danger is-link" to="/">ยกเลิก</Link>
+                                    <Link className="button is-danger is-link" to="/products">ยกเลิก</Link>
                                 </div>
                             </div>
                         </div>

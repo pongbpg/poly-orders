@@ -14,7 +14,7 @@ export class ListProducts extends React.Component {
             sizeTile: 3,
             productsCount: 0
         };
-        this.props.setTitle('ลายสินค้า');
+        this.props.setTitle('เลือกลายเสื้อ');
         // console.log(this.props.listProducts());
     }
     componentWillReceiveProps = (nextProps) => {

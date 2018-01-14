@@ -14,7 +14,7 @@ export class ListApps extends React.Component {
             <div className="column is-8 is-offset-2">
                 <div className="columns is-pulled-right">
                     <div className="column">
-                        <Link className="button is-info" to="/carts/add" ><MdAddCircle />&nbsp;สั่งซื้อ</Link>
+                        {/* <Link className="button is-info" to="/carts/add" ><MdAddCircle />&nbsp;สั่งซื้อ</Link> */}
                     </div>
                 </div>
                 <div className="columns">

@@ -49,8 +49,9 @@ export class Header extends React.Component {
             </div>
             <div id="navMenu" className={this.state.isBurger === true ? "navbar-menu is-active" : "navbar-menu"}>
               < div className="navbar-start">
-                <Link className="navbar-item" to="/products">เลือกสินค้า</Link>
-                <Link className="navbar-item" to="/products/add">เพิ่มสินค้า</Link>
+                <Link className="navbar-item" to="/products">เลือกลายเสื้อ</Link>
+                <Link className="navbar-item" to="/products/add">เพิ่มลายเสื้อ</Link>
+                <Link className="navbar-item" to="/carts">ตระกร้าสินค้า</Link>
                 <Link className="navbar-item is-hidden-desktop" to="/address">ที่อยู่จัดส่งสินค้า</Link>
                 <a className="navbar-item is-hidden-desktop" onClick={this.props.startLogout}>ออกจากระบบ</a>
               </div>
