@@ -10,13 +10,20 @@ export class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: false,
+      isMenu: false,
+      isBurger: false,
       title: props.title
     };
   }
-  toggleIsActive = () => {
+  toggleIsMenu = () => {
     this.setState(() => ({
-      isActive: !this.state.isActive
+      isMenu: !this.state.isMenu
+    }))
+  };
+  toggleIsBurger = () => {
+    // console.log('click burger')
+    this.setState(() => ({
+      isBurger: !this.state.isBurger
     }))
   };
   componentWillReceiveProps(nextProps) {
@@ -28,43 +35,28 @@ export class Header extends React.Component {
     const color = { color: '#333' };
     const borderRadius = { borderRadius: '25px' }
     return (
-      // <header className="header">
-      //   <div className="content-container">
-      //     <div className="header__content">
-      //       <Link className="header__title" to="/dashboard">
-      //         <h2>KMUTNB-AUTH</h2>
-      //       </Link>
-      //       {/* <NavLink to="/create" activeClassName="is-active">Create Expense</NavLink> */}
-      //       <div className="header__user-info">
-      //         <img className="image image--user" src={props.providerData.photoURL} title={props.providerData.displayName} />
-      //         <button className="button button--link" onClick={props.startLogout}><MdExitToApp />Logout</button>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </header>
       <div>
         <nav className="navbar is-danger">
           <div className="container">
             <div className="navbar-brand">
-              <Link className="navbar-item brand-text" to="/"><FaHome />&nbsp;หน้าแรก</Link>
-              <div className="navbar-burger burger" data-target="navMenu">
+              <Link className="navbar-item brand-text" to="/products"><FaHome />&nbsp;หน้าแรก</Link>
+              <div data-target="navMenu" onClick={this.toggleIsBurger}
+                className={this.state.isBurger === true ? "navbar-burger burger is-active" : "navbar-burger burger"}>
                 <span></span>
                 <span></span>
                 <span></span>
               </div>
             </div>
-            <div id="navMenu" className="navbar-menu">
-              {/* {
-                this.props.role === 'admin' && ( */}
-              <div className="navbar-start">
+            <div id="navMenu" className={this.state.isBurger === true ? "navbar-menu is-active" : "navbar-menu"}>
+              < div className="navbar-start">
                 <Link className="navbar-item" to="/products">เลือกสินค้า</Link>
                 <Link className="navbar-item" to="/products/add">เพิ่มสินค้า</Link>
+                <Link className="navbar-item is-hidden-desktop" to="/address">ที่อยู่จัดส่งสินค้า</Link>
+                <a className="navbar-item is-hidden-desktop" onClick={this.props.startLogout}>ออกจากระบบ</a>
               </div>
-              {/* )
-              } */}
-              <div className="navbar-end">
-                <div className={this.state.isActive === true ? "navbar-item has-dropdown is-active" : "navbar-item has-dropdown"}>
-                  <a className="navbar-link" onClick={this.toggleIsActive}>
+              <div className="navbar-end is-hidden-touch">
+                <div className={this.state.isMenu === true ? "navbar-item has-dropdown is-active" : "navbar-item has-dropdown"}>
+                  <a className="navbar-link" onClick={this.toggleIsMenu}>
                     <figure className="image is-32x32">
                       <img style={borderRadius} src={this.props.providerData.photoURL} title={this.props.providerData.displayName} />
                     </figure>
@@ -72,15 +64,10 @@ export class Header extends React.Component {
                   </a>
                   <div className="navbar-dropdown">
                     <Link className="navbar-item" to="/address">
-                      -ข้อมูลส่วนตัว
+                      ที่อยู่จัดส่งสินค้า
                     </Link>
                     <hr className="navbar-divider" />
-                    <div className="navbar-item">
-                      <a className="button" onClick={this.props.startLogout}>
-                        <span className="icon"><MdExitToApp /></span>
-                        <span>ออกจากระบบ</span>
-                      </a>
-                    </div>
+                    <a className="navbar-item" onClick={this.props.startLogout}> ออกจากระบบ</a>
                   </div>
                 </div>
               </div>
@@ -95,7 +82,7 @@ export class Header extends React.Component {
             </div>
           </div>
         </section>
-      </div>
+      </div >
     );
   }
 }
